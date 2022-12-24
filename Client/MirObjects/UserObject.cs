@@ -96,10 +96,17 @@ namespace Client.MirObjects
             MaxExperience = info.MaxExperience;
 
             LevelEffects = info.LevelEffects;
-
-            Inventory = info.Inventory;
-            Equipment = info.Equipment;
-            QuestInventory = info.QuestInventory;
+            if (info.Inventory != null){
+                Inventory = info.Inventory;
+            }
+            if (info.Equipment != null)
+            {
+                Equipment = info.Equipment;
+            }
+            if (info.QuestInventory != null)
+            {
+                QuestInventory = info.QuestInventory;
+            }
 
             HasExpandedStorage = info.HasExpandedStorage;
             ExpandedStorageExpiryTime = info.ExpandedStorageExpiryTime;

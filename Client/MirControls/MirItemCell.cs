@@ -66,6 +66,10 @@ namespace Client.MirControls
         {
             get
             {
+                if (MapObject.User == null)
+                {
+                    return null;
+                }
                 switch (GridType)
                 {
                     case MirGridType.Inventory:

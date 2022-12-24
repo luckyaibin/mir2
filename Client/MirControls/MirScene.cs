@@ -7,6 +7,7 @@ using Client.MirScenes;
 using SlimDX.Direct3D9;
 using S = ServerPackets;
 using C = ClientPackets;
+using System.IO;
 
 namespace Client.MirControls
 {
@@ -195,9 +196,22 @@ namespace Client.MirControls
                 case (short)ServerPacketIds.NewHeroInfo:
                     NewHeroInfo((S.NewHeroInfo)p);
                     break;
+                default:
+                    SaveError("Unprocessed packet" + p.Index);
+                    break;
             }
         }
-
+        public static void SaveError(string ex)
+        {
+            try
+            {
+                File.AppendAllText(@".\PacketsError.txt",
+                                   string.Format("[{0}] {1}{2}", System.DateTime.Now, ex, System.Environment.NewLine));
+            }
+            catch
+            {
+            }
+        }
         private void NewItemInfo(S.NewItemInfo info)
         {
             GameScene.ItemInfoList.Add(info.Info);

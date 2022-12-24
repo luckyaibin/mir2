@@ -485,6 +485,9 @@ namespace Client.MirScenes.Dialogs
 
         private void HealthOrb_BeforeDraw(object sender, EventArgs e)
         {
+            if (User == null){
+                return;
+            }
             if (Libraries.Prguse == null) return;
 
             int height;
@@ -526,7 +529,10 @@ namespace Client.MirScenes.Dialogs
         private void ExperienceBar_BeforeDraw(object sender, EventArgs e)
         {
             if (ExperienceBar.Library == null) return;
-
+            if(MapObject.User == null)
+            {
+                return;
+            }
             double percent = MapObject.User.Experience / (double)MapObject.User.MaxExperience;
             if (percent > 1) percent = 1;
             if (percent <= 0) return;
@@ -542,6 +548,10 @@ namespace Client.MirScenes.Dialogs
         private void WeightBar_BeforeDraw(object sender, EventArgs e)
         {
             if (WeightBar.Library == null) return;
+            if (MapObject.User == null)
+            {
+                return;
+            }
             double percent = MapObject.User.CurrentBagWeight / (double)MapObject.User.Stats[Stat.BagWeight];
             if (percent > 1) percent = 1;
             if (percent <= 0) return;
